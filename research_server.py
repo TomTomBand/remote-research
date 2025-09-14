@@ -7,7 +7,9 @@ from mcp.server.fastmcp import FastMCP
 PAPER_DIR = "papers"
 
 # Initialize FastMCP server
-mcp = FastMCP("research", port=8001)
+PORT = int(os.environ.get("PORT", "10000"))
+HOST = "0.0.0.0"
+mcp = FastMCP("research", host=HOST, port=PORT)
 
 @mcp.tool()
 def search_papers(topic: str, max_results: int = 5) -> List[str]:
@@ -189,5 +191,5 @@ def generate_search_prompt(topic: str, num_papers: int = 5) -> str:
     Please present both detailed information about each paper and a high-level synthesis of the research landscape in {topic}."""
 
 if __name__ == "__main__":
-    # Initialize and run the server
-    mcp.run(transport='sse')
+    print(f"Starting MCP server on {HOST}:{PORT}")
+    mcp.run(transport="sse", host=HOST, port=PORT)
