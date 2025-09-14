@@ -192,4 +192,4 @@ def generate_search_prompt(topic: str, num_papers: int = 5) -> str:
 
 if __name__ == "__main__":
     print(f"Starting MCP server on {HOST}:{PORT}")
-    mcp.run(transport="sse", host=HOST, port=PORT)
+    mcp.run(transport="sse")
